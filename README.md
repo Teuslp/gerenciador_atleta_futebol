@@ -1,1 +1,1 @@
-# gerenciador-atleta-futebol
+# gerenciador-de-atleta
