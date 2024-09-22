@@ -1,13 +1,11 @@
 import json
 import tkinter as tk
-from tkinter import messagebox, ttk  # ttk para o dropdown
+from tkinter import messagebox, ttk  
 
-# salvar os dados no JSON
 def salvar_dados(jogadores, arquivo="jogadores.json"):
     with open(arquivo, 'w') as f:
         json.dump(jogadores, f)
 
-# carregar dados JSON
 def carregar_dados(arquivo="jogadores.json"):
     try:
         with open(arquivo, 'r') as f:
@@ -15,13 +13,11 @@ def carregar_dados(arquivo="jogadores.json"):
     except FileNotFoundError:
         return {}
 
-# janela principal
 class JanelaPrincipal:
     def __init__(self, master):
         self.master = master
         self.master.title("Gerenciador de Jogadores de Futebol")
-
-        # menu
+ 
         tk.Button(master, text="Adicionar Jogador", command=self.abrir_adicionar_jogador).pack(pady=10)
         tk.Button(master, text="Exibir Jogador", command=self.abrir_exibir_jogador).pack(pady=10)
         tk.Button(master, text="Atualizar Dados do Jogador", command=self.abrir_atualizar_dados).pack(pady=10)
@@ -43,7 +39,6 @@ class JanelaPrincipal:
     def abrir_remover_jogador(self):
         JanelaRemoverJogador(self.master)
 
-# adicionar jogador
 class JanelaAdicionarJogador:
     def __init__(self, master):
         self.janela = tk.Toplevel(master)
@@ -88,7 +83,6 @@ class JanelaAdicionarJogador:
         else:
             messagebox.showwarning("Atenção", "Preencha todos os campos.")
 
-# exibir jogador
 class JanelaExibirJogador:
     def __init__(self, master):
         self.janela = tk.Toplevel(master)
@@ -116,7 +110,6 @@ class JanelaExibirJogador:
         else:
             messagebox.showwarning("Atenção", "Jogador não encontrado!")
 
-# atualizar dados 
 class JanelaAtualizarDados:
     def __init__(self, master):
         self.janela = tk.Toplevel(master)
@@ -161,7 +154,6 @@ class JanelaAtualizarDados:
         else:
             messagebox.showwarning("Atenção", "Jogador não encontrado!")
 
-# atualizar estatísticas
 class JanelaAtualizarEstatisticas:
     def __init__(self, master):
         self.janela = tk.Toplevel(master)
@@ -206,7 +198,6 @@ class JanelaAtualizarEstatisticas:
         else:
             messagebox.showwarning("Atenção", "Jogador não encontrado!")
 
-# remover jogador
 class JanelaRemoverJogador:
     def __init__(self, master):
         self.janela = tk.Toplevel(master)
@@ -228,10 +219,8 @@ class JanelaRemoverJogador:
         else:
             messagebox.showwarning("Atenção", "Jogador não encontrado!")
 
-# inicializando os dados
 jogadores = carregar_dados()
 
-# interface 
 root = tk.Tk()
 app = JanelaPrincipal(root)
 root.mainloop()
